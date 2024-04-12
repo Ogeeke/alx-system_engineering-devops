@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+# This script installs nginx and configures it's http response to contain a custom header
+
+sudo apt-get update -y
+
+sudo apt-get install nginx -y
+
+sudo rm /var/www/html/*.html
+
+echo "Hello World!" > /var/www/html/index.html
+
+sudo sed -i '42i\	rewrite ^/redirect_me$ / permanent;' /etc/nginx/sites-available/default
+
+sudo sed -i '43i\	error_page 404 /404.html;' /etc/nginx/sites-available/default
+
+echo "Ceci n'est pas une page" > /var/www/html/404.html
+
+sudo sed -i "44i\	add_header X-Served-By $(hostname);" /etc/nginx/sites-enabled/default
+
+sudo service nginx start
