@@ -1,10 +1,2 @@
 #!/usr/bin/env bash
-<<<<<<< HEAD
-# script to initialize server apache
-/etc/init.d/apache2 start
-=======
-# run apache on holbertonschool/265-0 container
-
-echo "ServerName localhost" >> /etc/apache2.conf
-service apache2 start
->>>>>>> 8b827427fdbd642288adc8d38d4e0151df15a02a
+sudo service apache2 start
